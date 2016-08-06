@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>${title!}</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="${config.description!}" name="description" />
+	<meta content="${config.author!}" name="author" />
+	<meta content="${config.keyWords!}" name="keyWords" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="${config.resourcePath!}/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/default.css" rel="stylesheet" type="text/css"/>
+	<link href="${config.resourcePath!}/media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="${config.resourcePath!}/media/css/jquery.nestable.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="${config.resourcePath!}/media/css/select2_metro.css" />
+	<link rel="stylesheet" href="${config.resourcePath!}/media/css/DT_bootstrap.css" /> -->
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="${config.resourcePath!}/media/image/favicon.ico" />
+</head>
+<body class="page-header-fixed">
+	<!-- BEGIN HEADER -->
+	<!--:include("/WEB-INF/views/admin/common/header.html"){}  -->
+	<div class="page-container row-fluid">
+	<!--:include("/WEB-INF/views/admin/common/sidebar-menu.html"){}  -->
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="color-panel hidden-phone">
+						<div class="color-mode-icons icon-color"></div>
+						<div class="color-mode-icons icon-color-close"></div>
+						<div class="color-mode">
+							<p>THEME COLOR</p>
+							
+						</div> 
+						
+					</div>
+					<h3 class="page-title">
+						系统设置 <small>系统参数</small>
+					</h3>
+					<ul class="breadcrumb">
+					<li>
+						<i class="icon-home"></i>
+						<a href="index.html">主页</a> 
+						<i class="icon-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">系统设置</a>
+						<i class="icon-angle-right"></i>
+					</li>
+					<li><a href="#">系统参数</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption"><i class="icon-globe"></i>系统菜单列表</div>
+							<div class="tools">
+								<a href="javascript:;" class="collapse"></a>
+								<a href="javascript:;" class="reload"></a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="clearfix">
+								<div class="btn-group">
+									<a href="javascript:void(0);" onclick="operation('','add')" class="btn blue" >
+										添加 <i class="icon-plus"></i>
+									</a>
+								</div>
+							</div>
+							<div class="dd">
+								<ol class="dd-list">
+									<!--:if(!isEmpty(menuList)){
+										for(menu in menuList){ -->
+										<li class="dd-item dd3-item" data-id="${menu.id!}">
+											<div class="dd-handle dd3-handle"></div>
+											<div class="dd3-content ">
+												<i class="${menu.icon!}"></i>												
+												${menu.title}
+												<div style="float:right;">	
+													<a href="javascript:void(0);" onclick="operation('${menu.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+													<span> | </span>
+													<a href="javascript:void(0);" onclick="operation('${menu.id!}','edit');"><i class="icon-edit"></i>修改</a>
+													<!--:if(isEmpty(menu.childs)){-->
+														<span> | </span>
+														<a href="javascript:void(0);" onclick="operation('${menu.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+													<!--:}-->		
+												</div>
+											</div>
+											<!--:if(!isEmpty(menu.childs)){-->
+												<ol class="dd-list">
+												<!--:for(menu1 in menu.childs){-->
+													<li class="dd-item dd3-item" data-id="${menu1.id!}">
+														<div class="dd-handle dd3-handle"></div>
+														<div class="dd3-content ">
+															<i class="${menu1.icon!}"></i>
+															${menu1.title}
+															<div style="float:right;">	
+																<a href="javascript:void(0);" onclick="operation('${menu1.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																<span> | </span>
+																<a href="javascript:void(0);" onclick="operation('${menu1.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																<!--:if(isEmpty(menu1.childs)){-->
+																	<span> | </span>
+																	<a href="javascript:void(0);" onclick="operation('${menu1.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																<!--:}-->	
+															</div>
+														</div>
+														<!--:if(!isEmpty(menu1.childs)){-->
+															<ol class="dd-list">
+															<!--:for(menu2 in menu1.childs){-->
+																<li class="dd-item dd3-item" data-id="${menu2.id!}">
+																	<div class="dd-handle dd3-handle"></div>
+																	<div class="dd3-content">
+																		<i class="${menu2.icon!}"></i>
+																		${menu2.title}
+																		<div style="float:right;">	
+																			<a href="javascript:void(0);" onclick="operation('${menu2.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																			<span> | </span>
+																			<a href="javascript:void(0);" onclick="operation('${menu2.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																			<!--:if(isEmpty(menu2.childs)){-->
+																				<span> | </span>
+																				<a href="javascript:void(0);" onclick="operation('${menu2.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																			<!--:}-->	
+																		</div>
+																	</div>
+																	<!--:if(!isEmpty(menu2.childs)){-->
+																		<ol class="dd-list">
+																		<!--:for(menu3 in menu2.childs){-->
+																			<li class="dd-item dd3-item" data-id="${menu3.id!}">
+																				<div class="dd-handle dd3-handle"></div>
+																				<div class="dd3-content">
+																					<i class="${menu3.icon!}"></i>
+																					${menu3.title}
+																					<div style="float:right;">	
+																						<a href="javascript:void(0);" onclick="operation('${menu3.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																						<span> | </span>
+																						<a href="javascript:void(0);" onclick="operation('${menu3.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																						<!--:if(isEmpty(menu3.childs)){-->
+																							<span> | </span>
+																							<a href="javascript:void(0);" onclick="operation('${menu3.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																						<!--:}-->	
+																					</div>
+																				</div>
+																				<!--:if(!isEmpty(menu3.childs)){-->
+																					<ol class="dd-list">
+																					<!--:for(menu4 in menu3.childs){-->
+																						<li class="dd-item dd3-item" data-id="${menu4.id!}">
+																							<div class="dd-handle dd3-handle"></div>
+																							<div class="dd3-content">
+																								<i class="${menu4.icon!}"></i>
+																								${menu4.title}
+																								<div style="float:right;">	
+																									<a href="javascript:void(0);" onclick="operation('${menu4.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																									<span> | </span>
+																									<a href="javascript:void(0);" onclick="operation('${menu4.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																									<!--:if(isEmpty(menu4.childs)){-->
+																										<span> | </span>
+																										<a href="javascript:void(0);" onclick="operation('${menu4.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																									<!--:}-->
+																								</div>
+																							</div>
+																							<!--:if(!isEmpty(menu4.childs)){-->
+																								<ol class="dd-list">
+																								<!--:for(menu5 in menu4.childs){-->
+																									<li class="dd-item dd3-item" data-id="${menu5.id!}">
+																										<div class="dd-handle dd3-handle"></div>
+																										<div class="dd3-content">
+																											<i class="${menu5.icon!}"></i>
+																											${menu5.title}
+																											<div style="float:right;">	
+																												<a href="javascript:void(0);" onclick="operation('${menu5.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																												<!--:if(isEmpty(menu5.childs)){-->
+																													<span> | </span>
+																													<a href="javascript:void(0);" onclick="operation('${menu5.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																												<!--:}-->
+																											</div>
+																										</div>	
+																									</li>
+																								<!--:}-->
+																								</ol>
+																							<!--:}  -->			
+																						</li>
+																					<!--:}-->
+																					</ol>
+																				<!--:}  -->				
+																			</li>
+																		<!--:}-->
+																		</ol>
+																	<!--:}  -->		
+																</li>
+															<!--:}-->
+															</ol>
+														<!--:}  -->
+													</li>
+												<!--:}-->
+												</ol>
+											<!--:}  -->
+										</li>
+									<!--:}
+									}  -->
+								</ol>
+							</div>							
+						</div>
+					</div>
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption"><i class="icon-globe"></i>前端菜单列表</div>
+							<div class="tools">
+								<a href="javascript:;" class="expand"></a>
+								<a href="javascript:;" class="reload"></a>
+							</div>
+						</div>
+						<div class="portlet-body" style="display: none;">
+							<div class="clearfix">
+								<div class="btn-group">
+									<a href="javascript:void(0);" onclick="operation1('','add')" class="btn blue" >
+										添加 <i class="icon-plus"></i>
+									</a>
+								</div>
+							</div>
+							<div class="dd" >
+								<ol class="dd-list">
+									<!--:if(!isEmpty(menuShowList)){
+										for(menu in menuShowList){ -->
+										<li class="dd-item dd3-item" data-id="${menu.id!}">
+											<div class="dd-handle dd3-handle"></div>
+											<div class="dd3-content ">
+												<i class="${menu.icon!}"></i>												
+												${menu.title}
+												<div style="float:right;">	
+													<a href="javascript:void(0);" onclick="operation1('${menu.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+													<span> | </span>
+													<a href="javascript:void(0);" onclick="operation1('${menu.id!}','edit');"><i class="icon-edit"></i>修改</a>
+													<!--:if(isEmpty(menu.childs)){-->
+														<span> | </span>
+														<a href="javascript:void(0);" onclick="operation1('${menu.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+													<!--:}-->		
+												</div>
+											</div>
+											<!--:if(!isEmpty(menu.childs)){-->
+												<ol class="dd-list">
+												<!--:for(menu1 in menu.childs){-->
+													<li class="dd-item dd3-item" data-id="${menu1.id!}">
+														<div class="dd-handle dd3-handle"></div>
+														<div class="dd3-content ">
+															<i class="${menu1.icon!}"></i>
+															${menu1.title}
+															<div style="float:right;">	
+																<a href="javascript:void(0);" onclick="operation1('${menu1.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																<span> | </span>
+																<a href="javascript:void(0);" onclick="operation1('${menu1.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																<!--:if(isEmpty(menu1.childs)){-->
+																	<span> | </span>
+																	<a href="javascript:void(0);" onclick="operation1('${menu1.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																<!--:}-->	
+															</div>
+														</div>
+														<!--:if(!isEmpty(menu1.childs)){-->
+															<ol class="dd-list">
+															<!--:for(menu2 in menu1.childs){-->
+																<li class="dd-item dd3-item" data-id="${menu2.id!}">
+																	<div class="dd-handle dd3-handle"></div>
+																	<div class="dd3-content">
+																		<i class="${menu2.icon!}"></i>
+																		${menu2.title}
+																		<div style="float:right;">	
+																			<a href="javascript:void(0);" onclick="operation1('${menu2.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																			<span> | </span>
+																			<a href="javascript:void(0);" onclick="operation1('${menu2.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																			<!--:if(isEmpty(menu2.childs)){-->
+																				<span> | </span>
+																				<a href="javascript:void(0);" onclick="operation1('${menu2.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																			<!--:}-->	
+																		</div>
+																	</div>
+																	<!--:if(!isEmpty(menu2.childs)){-->
+																		<ol class="dd-list">
+																		<!--:for(menu3 in menu2.childs){-->
+																			<li class="dd-item dd3-item" data-id="${menu3.id!}">
+																				<div class="dd-handle dd3-handle"></div>
+																				<div class="dd3-content">
+																					<i class="${menu3.icon!}"></i>
+																					${menu3.title}
+																					<div style="float:right;">	
+																						<a href="javascript:void(0);" onclick="operation1('${menu3.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																						<span> | </span>
+																						<a href="javascript:void(0);" onclick="operation1('${menu3.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																						<!--:if(isEmpty(menu3.childs)){-->
+																							<span> | </span>
+																							<a href="javascript:void(0);" onclick="operation1('${menu3.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																						<!--:}-->	
+																					</div>
+																				</div>
+																				<!--:if(!isEmpty(menu3.childs)){-->
+																					<ol class="dd-list">
+																					<!--:for(menu4 in menu3.childs){-->
+																						<li class="dd-item dd3-item" data-id="${menu4.id!}">
+																							<div class="dd-handle dd3-handle"></div>
+																							<div class="dd3-content">
+																								<i class="${menu4.icon!}"></i>
+																								${menu4.title}
+																								<div style="float:right;">	
+																									<a href="javascript:void(0);" onclick="operation1('${menu4.id!}','add');"><i class="icon-plus"></i>添加下级</a>	
+																									<span> | </span>
+																									<a href="javascript:void(0);" onclick="operation1('${menu4.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																									<!--:if(isEmpty(menu4.childs)){-->
+																										<span> | </span>
+																										<a href="javascript:void(0);" onclick="operation1('${menu4.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																									<!--:}-->
+																								</div>
+																							</div>
+																							<!--:if(!isEmpty(menu4.childs)){-->
+																								<ol class="dd-list">
+																								<!--:for(menu5 in menu4.childs){-->
+																									<li class="dd-item dd3-item" data-id="${menu5.id!}">
+																										<div class="dd-handle dd3-handle"></div>
+																										<div class="dd3-content">
+																											<i class="${menu5.icon!}"></i>
+																											${menu5.title}
+																											<div style="float:right;">	
+																												<a href="javascript:void(0);" onclick="operation1('${menu5.id!}','edit');"><i class="icon-edit"></i>修改</a>
+																												<!--:if(isEmpty(menu5.childs)){-->
+																													<span> | </span>
+																													<a href="javascript:void(0);" onclick="operation1('${menu5.id!}','delete');"><i class="icon-trash"></i> 删除</a>	
+																												<!--:}-->
+																											</div>
+																										</div>	
+																									</li>
+																								<!--:}-->
+																								</ol>
+																							<!--:}  -->			
+																						</li>
+																					<!--:}-->
+																					</ol>
+																				<!--:}  -->				
+																			</li>
+																		<!--:}-->
+																		</ol>
+																	<!--:}  -->		
+																</li>
+															<!--:}-->
+															</ol>
+														<!--:}  -->
+													</li>
+												<!--:}-->
+												</ol>
+											<!--:}  -->
+										</li>
+									<!--:}
+									}  -->
+								</ol>
+							</div>							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="footer-inner">
+			${config.copyright!}
+		</div>
+		<div class="footer-tools">
+			<span class="go-top">
+				<i class="icon-angle-up"></i>
+			</span>
+		</div>
+	</div>
+	<a id="popUpWindow" class=" btn yellow" data-toggle="modal" href="#static" style="display:none;">View Demo</a>
+	<div id="static" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+			<h3 id="system-config-label">操作提示</h3>
+		</div>
+		<div class="modal-body">
+			<p>${success!''}</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn">确定</button>
+		</div>
+	</div>
+	<!-- 操作From -->
+	<form action="${config.contextPath!}/admin/product/editClassify.htm" method="POST" id="operationForm">
+		<input name="id" id="id"  type="hidden"/>
+		<input name="type" id="type"  type="hidden"/>		
+	</form>
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="${config.resourcePath!}/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="${config.resourcePath!}/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="${config.resourcePath!}/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="${config.resourcePath!}/media/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+	<script src="${config.resourcePath!}/media/js/excanvas.min.js"></script>
+	<script src="${config.resourcePath!}/media/js/respond.min.js"></script>  
+	<![endif]-->   
+	<script src="${config.resourcePath!}/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="${config.resourcePath!}/media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="${config.resourcePath!}/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="${config.resourcePath!}/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="${config.resourcePath!}/media/js/bootstrap-fileupload.js"></script>
+	<script type="text/javascript" src="${config.resourcePath!}/media/js/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="${config.resourcePath!}/media/js/select2.min.js"></script>
+	<script type="text/javascript" src="${config.resourcePath!}/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="${config.resourcePath!}/media/js/DT_bootstrap.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<script src="${config.resourcePath!}/media/js/jquery.nestable.js"></script>  
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="${config.resourcePath!}/media/js/app.js"></script>
+<!-- 	<script src="${config.resourcePath!}/media/js/table-advanced.js"></script>   -->
+	<script src="${config.resourcePath!}/media/js/ui-nestable.js"></script>        
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {       
+		   // initiate layout and plugins
+		   App.init();
+		   UINestable.init(); 
+		   var success='${success!}';
+		   if(success!=null&&success.length>0){
+			   //tanchu
+			   $('#popUpWindow').click();
+		   }
+		});
+		function operation(id,type){
+			var dataForm=$('#operationForm');
+			dataForm.find('#id').val(id);
+			dataForm.find('#type').val('admin');
+			var url='${config.contextPath!}/admin/system/show.htm';
+			if(type=='add'){
+				//新增
+				url='${config.contextPath!}/admin/system/addMenu.htm';
+			}else if(type=='edit'){
+				//修改
+				url='${config.contextPath!}/admin/system/editMenu.htm';
+			}else if(type=='delete'){
+				//删除
+				url='${config.contextPath!}/admin/system/deleteMenu.htm';
+			}
+			dataForm.attr('action',url);
+			dataForm.submit();
+		}
+		function operation1(id,type){
+			var dataForm=$('#operationForm');
+			dataForm.find('#id').val(id);
+			dataForm.find('#type').val('show');
+			var url='${config.contextPath!}/admin/system/show.htm';
+			if(type=='add'){
+				//新增
+				url='${config.contextPath!}/admin/system/addMenu.htm';
+			}else if(type=='edit'){
+				//修改
+				url='${config.contextPath!}/admin/system/editMenu.htm';
+			}else if(type=='delete'){
+				//删除
+				url='${config.contextPath!}/admin/system/deleteMenu.htm';
+			}
+			dataForm.attr('action',url);
+			dataForm.submit();
+		}
+	</script>
+
+	<!-- END JAVASCRIPTS -->
+</body>
+</html>

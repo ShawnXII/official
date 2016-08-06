@@ -1,0 +1,118 @@
+<div class="page-sidebar nav-collapse collapse">
+	<ul class="page-sidebar-menu">
+		<li>
+			<div class="sidebar-toggler hidden-phone"></div>
+		</li>
+		<!--:if(!isEmpty(menuList)){
+				for(menu in menuList){-->
+			<li class="">
+				<!--:
+				var isSub=false;
+				if(!isEmpty(menu.childs)){
+					isSub=true;
+				}  -->
+				<a href="${isSub?'javascript:;':isEmpty(menu.url)?'/':config.contextPath!+menu.url}" title="${menu.title!}" target="${menu.target!}" id="menu_${menu.id!}">
+					<i class="${menu.icon!}"></i>
+					<span class="title">${menu.title!}</span>
+					<!--:if(isSub){-->
+						<span class="arrow "></span>	
+					<!--:}-->
+				</a>
+				<!--:if(isSub){-->
+					<ul class="sub-menu">
+						<!--:for(menu1 in menu.childs){-->
+							<li class="">
+								<!--:
+								var isSub1=false;
+								if(!isEmpty(menu1.childs)){
+									isSub1=true;
+								}  -->
+								<a href="${isSub1?'javascript:;':isEmpty(menu1.url)?'/':config.contextPath!+menu1.url}" title="${menu1.title!}" target="${menu1.target!}" id="menu_${menu1.id!}">
+									<i class="${menu1.icon!}"></i>
+									<span class="title">${menu1.title!}</span>
+									<!--:if(isSub1){-->
+										<span class="arrow "></span>	
+									<!--:}-->
+								</a>
+								<!--:if(isSub1){-->
+									<ul class="sub-menu">
+										<!--:for(menu2 in menu1.childs){-->
+											<li class="">
+											<!--:
+											var isSub2=false;
+											if(!isEmpty(menu2.childs)){
+												isSub2=true;
+											}  -->
+											<a href="${isSub2?'javascript:;':isEmpty(menu2.url)?'/':config.contextPath!+menu2.url}" title="${menu2.title!}" target="${menu2.target!}" id="menu_${menu2.id!}">
+												<i class="${menu2.icon!}"></i>
+												<span class="title">${menu2.title!}</span>
+												<!--:if(isSub2){-->
+													<span class="arrow "></span>	
+												<!--:}-->
+											</a>
+											<!--:if(isSub2){-->
+												<ul class="sub-menu">
+													<!--:for(menu3 in menu2.childs){-->
+														<li class="">
+														<!--:
+														var isSub3=false;
+														if(!isEmpty(menu3.childs)){
+															isSub3=true;
+														}  -->
+														<a href="${isSub3?'javascript:;':isEmpty(menu3.url)?'/':config.contextPath!+menu3.url}" title="${menu3.title!}" target="${menu3.target!}" id="menu_${menu3.id!}">
+															<i class="${menu3.icon!}"></i>
+															<span class="title">${menu3.title!}</span>
+															<!--:if(isSub3){-->
+																<span class="arrow "></span>	
+															<!--:}-->
+														</a>
+														<!--:if(isSub3){-->
+															<ul class="sub-menu">
+																<!--:for(menu4 in menu3.childs){-->
+																	<li class="">
+																		<!--:
+																		var isSub4=false;
+																		if(!isEmpty(menu4.childs)){
+																			isSub4=true;
+																		}  -->
+																		<a href="${isSub4?'javascript:;':isEmpty(menu4.url)?'/':config.contextPath!+menu4.url}" title="${menu4.title!}" target="${menu4.target!}" id="menu_${menu4.id!}">
+																			<i class="${menu4.icon!}"></i>
+																			<span class="title">${menu4.title!}</span>
+																			<!--:if(isSub4){-->
+																				<span class="arrow "></span>	
+																			<!--:}-->
+																		</a>
+																		<!--:if(isSub4){-->
+																			<ul class="sub-menu">
+																				<!--:for(menu5 in menu4.childs){-->
+																					<a href="${isEmpty(menu5.url)?'/':config.contextPath!+menu5.url}" title="${menu5.title!}" target="${menu5.target!}" id="menu_${menu5.id!}">
+																						<i class="${menu5.icon!}"></i>
+																						<span class="title">${menu5.title!}</span>
+																					</a>							
+																				<!--:}-->
+																			</ul>	
+																		<!--:}-->
+																	</li>
+																								
+																<!--:}-->
+															</ul>	
+														<!--:}-->
+													</li>
+																					
+													<!--:}-->
+												</ul>	
+											<!--:}-->
+										</li>
+																		
+										<!--:}-->
+									</ul>	
+								<!--:}-->
+							</li>							
+						<!--:}-->
+					</ul>	
+				<!--:}-->
+			</li>							
+			<!--:}
+			}-->
+	</ul>
+</div>
